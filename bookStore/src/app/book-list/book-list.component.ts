@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Book } from './books.model';
 
 @Component({
@@ -8,13 +8,7 @@ import { Book } from './books.model';
 })
 export class BookListComponent {
 
+  @Input()
   books : Array<Book> = []
-
-  constructor() {
-    let book1 : Book = {id: "1001", volumeInfo: {title: "Book 1", authors : ["John Doe"]}}
-    let book2 : Book = {id: "1002", volumeInfo: {title: "Book 2", authors : ["John Dark"]}}
-    this.books.push(book1)
-    this.books.push(book2)
-  }
 
 }
