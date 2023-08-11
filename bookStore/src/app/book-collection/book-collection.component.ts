@@ -11,8 +11,6 @@ export class BookCollectionComponent {
   @Input()
   books: Array<Book> = [];
 
-  ngOnInit() {
-    let book1 : Book = {id: "001", volumeInfo: {title: "book1", authors: ["Ryan James"]}};
-    this.books.push(book1);
-  }
+  ngOnInit() {}
+  
 }
