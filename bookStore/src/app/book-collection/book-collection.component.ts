@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Book } from '../book-list/books.model';
 
 @Component({
@@ -10,7 +10,10 @@ export class BookCollectionComponent {
 
   @Input()
   books: Array<Book> = [];
+  
+  @Output()
+  remove = new EventEmitter<string>()
 
   ngOnInit() {}
-  
+
 }

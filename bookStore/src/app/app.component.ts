@@ -32,4 +32,10 @@ export class AppComponent {
       console.log(`book with id ${bookId} not found`)
     }
   }
+
+  onRemove(bookId: string) {
+    console.log(`remove bookId ${bookId}`)
+    const bookIndex = this.collection.findIndex((book) => book.id === bookId)
+    this.collection.splice(bookIndex,1)
+  }
 }

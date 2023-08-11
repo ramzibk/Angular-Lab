@@ -2,4 +2,4 @@
 <app-book-list [books]="books" (add)="onAdd($event)"></app-book-list>
 
 <h2>My Collection</h2>
-<app-book-collection [books]="this.collection"></app-book-collection>
+<app-book-collection [books]="this.collection" (remove)="onRemove($event)"></app-book-collection>

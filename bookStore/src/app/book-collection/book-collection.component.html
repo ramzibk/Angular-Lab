@@ -1,5 +1,5 @@
 <div *ngFor="let book of books">
   <p>{{book.volumeInfo.title}}</p>
   <span> by {{book.volumeInfo.authors}}</span>
-  <button>Remove from Collection</button>
+  <button (click)="remove.emit(book.id)">Remove from Collection</button>
 </div>
