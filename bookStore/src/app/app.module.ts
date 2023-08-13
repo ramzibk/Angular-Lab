@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { BookCollectionComponent } from './book-collection/book-collection.component';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { BookCollectionComponent } from './book-collection/book-collection.compo
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]
