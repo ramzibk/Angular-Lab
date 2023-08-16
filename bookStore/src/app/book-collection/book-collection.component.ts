@@ -9,7 +9,7 @@ import { Book } from '../book-list/books.model';
 export class BookCollectionComponent {
 
   @Input()
-  books: Array<Book> = [];
+  books: ReadonlyArray<Book> = [];
   
   @Output()
   remove = new EventEmitter<string>()

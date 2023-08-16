@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { GoogleBookService } from './book-list/google-book.service';
 import { Book } from './book-list/books.model';
 import { Observable } from 'rxjs';
+import { BooksActions, BooksApiActions } from './state/books.actions';
+import { selectBookCollection, selectBooks } from './state/books.selectors';
 
 @Component({
   selector: 'app-root',
@@ -11,31 +14,22 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   title = 'bookStore';
 
-  books:  Book[] = [];
-  collection: Book[] = [];
+  books$ = this.store.select(selectBooks);
+  bookCollection$ = this.store.select(selectBookCollection);
 
-  constructor(private bookService: GoogleBookService) {}
+  constructor(private bookService: GoogleBookService, private store: Store) {}
 
   ngOnInit() {
     this.bookService.getBooks().subscribe(
-      (books) => this.books = books)
-      console.log("Books = "+this.books)
+      (books) => this.store.dispatch(BooksApiActions.retrievedBookList({books})))
+    console.log("Books = "+this.books$)
   }
 
   onAdd(bookId: string) {
-    const foundBook = this.books.find((book) => book.id === bookId)
-    if (foundBook !== undefined) {
-      this.collection.push(foundBook)
-      console.log(`book with id ${bookId} was added`)
-
-    } else {
-      console.log(`book with id ${bookId} not found`)
-    }
+    this.store.dispatch(BooksActions.addBook({bookId}))
   }
 
   onRemove(bookId: string) {
-    console.log(`remove bookId ${bookId}`)
-    const bookIndex = this.collection.findIndex((book) => book.id === bookId)
-    this.collection.splice(bookIndex,1)
+    this.store.dispatch(BooksActions.removeBook({bookId}))
   }
 }
